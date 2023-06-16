@@ -1,5 +1,6 @@
 {
-  "watch": ["./dist/server.js", "nodemon.json"],
-  "exec": "ts-node src/server.ts",
-  "ext": "js json"
+  "watch": ["src/**/*"],
+  "ignore": ["src/public/*"],
+  "ext": "js,jsx,ts,tsx",
+  "exec": "npm start"
 }
