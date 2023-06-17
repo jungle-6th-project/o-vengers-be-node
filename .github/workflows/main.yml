@@ -48,7 +48,7 @@ jobs:
         run: npm ci
 
       - name: Source env file
-        run: touch .env \
+        run: |
           echo "export LIVEKIT_API_KEY=${{secrets.LIVEKIT_API_KEY}}" >>.env \
           echo "export LIVEKIT_API_SECRET=${{secrets.LIVEKIT_API_SECRET}}" >> .env \
           echo "export LIVEKIT_URL=${{secrets.LIVEKIT_URL}}" >> .env \
