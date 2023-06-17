@@ -49,10 +49,10 @@ jobs:
 
       - name: Source env file
         run: |
-          echo "export LIVEKIT_API_KEY=${{secrets.LIVEKIT_API_KEY}}" >>.env \
-          echo "export LIVEKIT_API_SECRET=${{secrets.LIVEKIT_API_SECRET}}" >> .env \
-          echo "export LIVEKIT_URL=${{secrets.LIVEKIT_URL}}" >> .env \
-          cat .env \
+          echo "export LIVEKIT_API_KEY=${{secrets.LIVEKIT_API_KEY}}" >>.env |
+          echo "export LIVEKIT_API_SECRET=${{secrets.LIVEKIT_API_SECRET}}" >> .env |
+          echo "export LIVEKIT_URL=${{secrets.LIVEKIT_URL}}" >> .env |
+          cat .env |
           source .env
       
       # --if-present 옵션은 npm 스크립트가 존재할 때만 실행시키라는 의미이다.
