@@ -1,5 +1,5 @@
 export function getLiveKitURL(region?: string | string[]): string {
-  let targetKey = "LIVEKIT_URL";
+  let targetKey = 'LIVEKIT_URL';
   if (region && !Array.isArray(region)) {
     targetKey = `LIVEKIT_URL_${region}`.toUpperCase();
   }

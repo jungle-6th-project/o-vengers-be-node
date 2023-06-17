@@ -6,7 +6,9 @@
   "scripts": {
     "build": "tsc",
     "start": "npm run build && node ./dist/server.js",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "format": "prettier --cache --write .",
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
     "@types/express": "^4.17.17",
@@ -28,8 +30,13 @@
     "@babel/core": "^7.22.1",
     "@babel/node": "^7.22.1",
     "@babel/preset-env": "^7.22.4",
+    "@typescript-eslint/eslint-plugin": "^5.59.11",
+    "@typescript-eslint/parser": "^5.59.11",
     "concurrently": "^8.1.0",
+    "eslint": "^8.43.0",
+    "eslint-config-prettier": "^8.8.0",
     "nodemon": "^2.0.22",
+    "prettier": "^2.8.8",
     "ts-node": "^10.9.1"
   }
 }
