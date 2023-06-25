@@ -20,12 +20,19 @@ const createToken = (userInfo: AccessTokenOptions, grant: VideoGrant) => {
 const app = express();
 app.use(cors());
 const port = 5000;
+const test =
+  process.env.NODE_ENV === 'production'
+    ? 'https://bbodogstudy.com'
+    : 'http://localhost:5173';
 
+console.log(test);
 const httpServer = http.createServer(app);
-
 const wsServer = new Server(httpServer, {
   cors: {
-    origin: 'http://localhost:5173',
+    origin:
+      process.env.NODE_ENV === 'production'
+        ? 'https://www.bbodogstudy.com'
+        : 'http://localhost:5173',
     credentials: true,
   },
 });
