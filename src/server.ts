@@ -33,7 +33,8 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 // video chat
-app.get('/getToken', (req, res) => {
+//토큰 받아오기
+app.get('/video/getToken', (req, res) => {
   const { identity, name, roomName, metadata } = req.query;
 
   if (typeof identity !== 'string' || typeof roomName !== 'string') {
@@ -72,6 +73,7 @@ app.get('/getToken', (req, res) => {
   res.status(200).json(result);
 });
 
+//url 받아오기
 app.get('/video/api/url', (req, res) => {
   try {
     const region = undefined;
