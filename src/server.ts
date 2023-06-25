@@ -4,6 +4,7 @@ import { getLiveKitURL } from './utils/server-utils.js';
 import http from 'http';
 import { Server, Socket } from 'socket.io';
 import express, { Request, Response } from 'express';
+import cors from 'cors';
 
 const createToken = (userInfo: AccessTokenOptions, grant: VideoGrant) => {
   const at = new AccessToken(
@@ -17,6 +18,7 @@ const createToken = (userInfo: AccessTokenOptions, grant: VideoGrant) => {
 };
 
 const app = express();
+app.use(cors());
 const port = 5000;
 
 const httpServer = http.createServer(app);
