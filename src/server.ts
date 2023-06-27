@@ -20,19 +20,11 @@ const createToken = (userInfo: AccessTokenOptions, grant: VideoGrant) => {
 const app = express();
 app.use(cors());
 const port = 5000;
-const test =
-  process.env.NODE_ENV === 'production'
-    ? 'https://bbodogstudy.com'
-    : 'http://localhost:5173';
 
-console.log(test);
 const httpServer = http.createServer(app);
 const wsServer = new Server(httpServer, {
   cors: {
-    origin:
-      process.env.NODE_ENV === 'production'
-        ? 'https://www.bbodogstudy.com'
-        : 'http://localhost:5173',
+    origin: 'https://www.bbodogstudy.com',
     credentials: true,
   },
 });
@@ -105,7 +97,8 @@ app.get('/video/health', (req, res) => {
 //text chat
 const chatRooms: { [roomId: string]: Socket[] } = {};
 
-wsServer.of('/study').on('connection', (socket: Socket) => {
+wsServer.on('connection', (socket: Socket) => {
+  console.log('connected', socket.id);
   let roomID: string;
 
   socket.on('enter-room', (data: string) => {
@@ -117,6 +110,7 @@ wsServer.of('/study').on('connection', (socket: Socket) => {
     } else {
       chatRooms[roomID].push(socket);
     }
+    console.log('chatRooms: ', chatRooms);
   });
 
   socket.on('sentMessage', (data: string) => {
@@ -126,6 +120,7 @@ wsServer.of('/study').on('connection', (socket: Socket) => {
   });
 
   socket.on('disconnect', () => {
+    console.log('disconnect');
     if (roomID && chatRooms[roomID]) {
       chatRooms[roomID] = chatRooms[roomID].filter(
         (clientSocket: Socket) => clientSocket !== socket
